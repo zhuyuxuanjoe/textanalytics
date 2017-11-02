@@ -65,3 +65,54 @@ breaks = str_locate(string = emails,pattern = "\n\n")
 metadata = str_sub(string = emails,start = 1,end = breaks[,1])
 body = str_sub(string = emails,start = breaks[,2])
 cat(body)
+
+
+## Handout2
+
+#1.
+fruit = c("apple","banana","pear","pineapple")
+str_detect(fruit,"a")
+str_detect(fruit,"^a") # first letter
+str_detect(fruit,"a$") # last letter
+str_detect(fruit,"[aeiou]") # a\e\i\o\u
+str_detect(fruit,"[a-d]") # a\b\c\d
+
+# detect a str that starts with "a" and ends with "e"
+str_detect(fruit,"^ae$")
+str_detect(fruit,"^a[a-z]e$")
+str_detect(fruit,"^a[a-z]*e$")
+
+#4.
+phone = "213 740 4826"
+
+parser = "[0-9]{3} [0-9]{3} [0-9]{4}"
+
+str_detect(phone, parser)
+
+phone2 = c("213 740 4826","213-740-4826")
+
+parser2 = "[0-9]{3} |-[0-9]{3} |-[0-9]{4}"
+parser2 = "[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}"
+
+str_detect(phone2, parser2)
+
+phone3 = c("213 740 4826","213-740-4826","(213) 740-4826")
+
+parser3 = "[(]?[0-9]{3}[)]?[ -][0-9]{3}[ -][0-9]{4}\\b"
+
+str_detect(phone3, parser3)
+
+#6.
+cat(body[10])
+cat(body[18])
+
+str_extract(string = body,pattern = parser3)
+
+#7.
+zip = c("90028","90028-0809000")
+
+parser.zip = "[0-9]{5}(-[0-9]{4,4})?"
+
+str_detect(zip,parser.zip)
+str_detect(string = body,pattern = parser.zip)
+str_extract(string = body,pattern = parser.zip)
