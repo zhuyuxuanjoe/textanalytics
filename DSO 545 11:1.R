@@ -47,4 +47,21 @@ input2 <- c("abc","defg","1234")
 str_sub(input2,c(2,3,2))
 
 #7.
-str_locate(string = emails,pattern = "\n\n")
+emails[10]
+cat(emails[10])
+str_locate(string = emails[1],pattern = "\n\n")
+
+#8.
+body1 = str_sub(string = emails[1],start = 844)
+metadata1 = str_sub(string = emails[1],end = 842)
+cat(metadata1)
+cat(body1)
+
+#9.
+str_split(string = metadata1,pattern = "\n")
+
+#10.
+breaks = str_locate(string = emails,pattern = "\n\n")
+metadata = str_sub(string = emails,start = 1,end = breaks[,1])
+body = str_sub(string = emails,start = breaks[,2])
+cat(body)
